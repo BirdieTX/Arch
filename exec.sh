@@ -7,7 +7,6 @@ fi
 
 USER_HOME=$(eval echo ~$SUDO_USER)
 
-fastfetch
 echo "Creating home directory folders ..."
 sleep 4
 sudo -u "$SUDO_USER" mkdir -p "$USER_HOME/.Public"
@@ -48,7 +47,6 @@ sudo -u "$SUDO_USER" cp -r kitty "$USER_HOME/.config"
 sudo -u "$SUDO_USER" cp -r kwalletrc "$USER_HOME/.config"
 sudo -u "$SUDO_USER" cp -r mc "$USER_HOME/.config"
 
-fastfetch -c examples/9
 echo "Installing system packages ..."
 sleep 4
 pacman -Syu --noconfirm
@@ -61,13 +59,17 @@ pacman -S --noconfirm \
     b43-fwcutter \
     bat \
     bind \
+    breeze-gtk \
+    breeze-plymouth \
     btop \
+    bluedevil \
     cmatrix \
     discord \
     dnsmasq \
     dnssec-anchors \
     dolphin \
     dosfstools \
+    drkonqi \
     elisa \
     ell \
     ethtool \
@@ -75,6 +77,7 @@ pacman -S --noconfirm \
     eza \
     fastfetch \
     filelight \
+    flatpak-kcm \
     gamescope \
     gimp \
     grub-btrfs \
@@ -89,15 +92,21 @@ pacman -S --noconfirm \
     kcharselect \
     kcolorchooser \
     kcolorpicker \
+    kde-gtk-config \
     kdeconnect \
     kdenlive \
+    kdeplasma-addons \
     kfind \
+    kgamma \
     kio-admin \
     kitty \
     kolourpaint \
+    kscreen \
+    ksshaskpass \
     kstars \
     ksystemlog \
     kwrite \
+    kwrited \
     lib32-mesa \
     lib32-vulkan-radeon \
     lsscsi \
@@ -114,18 +123,31 @@ pacman -S --noconfirm \
     noto-fonts-emoji \
     noto-fonts-extra \
     ntfs-3g \
+    nwg-look \
     obsidian \
     okular \
     openconnect \
     openh264 \
     openvpn \
+    oxygen \
+    oxygen-sounds \
     papirus-icon-theme \
     partitionmanager \
     pipewire-alsa \
     pipewire-jack \
     pipewire-pulse \
-    pipewire-session-manager \
+    plasma-browser-integration \
     plasma-desktop \
+    plasma-disks \
+    plasma-firewall \
+    plasma-nm \
+    plasma-pa \
+    plasma-sdk \
+    plasma-systemmonitor \
+    plasma-thunderbolt \
+    plasma-workspace-wallpapers \
+    plymouth-kcm \
+    print-manager \
     pv \
     qalculate-qt \
     qbittorrent \
@@ -133,6 +155,7 @@ pacman -S --noconfirm \
     rpcbind \
     signal-desktop \
     sg3_utils \
+    spectacle \
     steam \
     sysfsutils \
     systemd-resolvconf \
@@ -145,12 +168,13 @@ pacman -S --noconfirm \
     vlc \
     vulkan-radeon \
     vvave \
+    wacomtablet \
     x264 \
     xfsprogs \
-    xl2tdp \
+    xl2tpd \
     xmlsec
 
-fastfetch -l arch2
+fastfetch -c examples/9
 
 echo "Installing AUR packages ..."
 sleep 4
@@ -175,18 +199,18 @@ sleep 4
 echo "Installing flatpaks from Flathub: ..."
 
 sudo -u "$SUDO_USER" flatpak install flathub -y \
-    com.jetbrains.Rider \
-    io.github.shiftey.Desktop \
-    com.pokemmo.PokeMMO \
-    io.github.endless_sky.endless_sky \
-    io.github.freedoom.Phase1 \
-    net.runelite.RuneLite \
-    org.openttd.OpenTTD \
-    com.obsproject.Studio \
-    io.github.aandrew_me.ytdn \
     com.bitwarden.desktop \
     com.geeks3d.furmark \
-    com.protonvpn.www
+    com.jetbrains.Rider \
+    com.obsproject.Studio \
+    com.pokemmo.PokeMMO \
+    com.protonvpn.www \
+    io.github.aandrew_me.ytdn \
+    io.github.endless_sky.endless_sky \
+    io.github.freedoom.Phase1 \
+    io.github.shiftey.Desktop \
+    net.runelite.RuneLite \
+    org.openttd.OpenTTD
 
 echo "All flatpaks installed ..."
 echo "Enabling ly display manager ..."
