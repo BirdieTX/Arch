@@ -9,6 +9,7 @@ USER_HOME=$(eval echo ~$SUDO_USER)
 
 echo "Creating home directory folders ..."
 sleep 4
+sudo -u "$SUDO_USER" mkdir -p "$USER_HOME/.Desktop"
 sudo -u "$SUDO_USER" mkdir -p "$USER_HOME/.Public"
 sudo -u "$SUDO_USER" mkdir -p "$USER_HOME/.Templates"
 sudo -u "$SUDO_USER" mkdir -p "$USER_HOME/Audio"
@@ -59,15 +60,14 @@ pacman -S --noconfirm \
     b43-fwcutter \
     bat \
     bind \
-    breeze-gtk \
-    breeze-plymouth \
     btop \
-    bluedevil \
+    cosmic-session \
+    cosmic-wallpapers \
     cmatrix \
     discord \
+    dconf \
     dnsmasq \
     dnssec-anchors \
-    dolphin \
     dosfstools \
     drkonqi \
     elisa \
@@ -92,21 +92,14 @@ pacman -S --noconfirm \
     kcharselect \
     kcolorchooser \
     kcolorpicker \
-    kde-gtk-config \
     kdeconnect \
     kdenlive \
-    kdeplasma-addons \
-    kfind \
-    kgamma \
     kio-admin \
     kitty \
     kolourpaint \
-    kscreen \
-    ksshaskpass \
     kstars \
     ksystemlog \
     kwrite \
-    kwrited \
     lib32-mesa \
     lib32-vulkan-radeon \
     lsscsi \
@@ -114,10 +107,10 @@ pacman -S --noconfirm \
     ly \
     mangohud \
     memtest86+-efi \
-    mesa \
     mc \
     mission-center \
     mtools \
+    nerd-fonts \
     nfs-utils \
     noto-fonts-cjk \
     noto-fonts-emoji \
@@ -129,23 +122,11 @@ pacman -S --noconfirm \
     openconnect \
     openh264 \
     openvpn \
-    oxygen \
-    oxygen-sounds \
     papirus-icon-theme \
     partitionmanager \
     pipewire-alsa \
     pipewire-jack \
     pipewire-pulse \
-    plasma-browser-integration \
-    plasma-desktop \
-    plasma-disks \
-    plasma-firewall \
-    plasma-nm \
-    plasma-pa \
-    plasma-sdk \
-    plasma-systemmonitor \
-    plasma-thunderbolt \
-    plasma-workspace-wallpapers \
     plymouth-kcm \
     print-manager \
     pv \
@@ -154,17 +135,17 @@ pacman -S --noconfirm \
     remmina \
     rpcbind \
     signal-desktop \
+    snapper \
     sg3_utils \
-    spectacle \
     steam \
     sysfsutils \
     systemd-resolvconf \
     texlive-fontsextra \
     texlive-fontsrecommended \
     thin-provisioning-tools \
+    ttf-arimo-nerd \
     ttf-jetbrains-mono \
     ttf-jetbrains-mono-nerd \
-    timeshift \
     vlc \
     vulkan-radeon \
     vvave \
@@ -188,6 +169,7 @@ sudo -u "$SUDO_USER" yay -S --noconfirm \
     proton-mail-bin \
     protontricks \
     protonup-qt \
+    snapper-gui \
     vscodium-bin
 
 echo "Checking for flatpak updates ..."
@@ -214,6 +196,6 @@ sudo -u "$SUDO_USER" flatpak install flathub -y \
 
 echo "All flatpaks installed ..."
 echo "Enabling ly display manager ..."
-systemctl enable ly.service
+systemctl enable cosmic-greeter.service
 echo "Setup complete!"
 fastfetch -l arch3
