@@ -17,32 +17,13 @@ sudo -u "$SUDO_USER" mkdir -p "$USER_HOME/Documents"
 sudo -u "$SUDO_USER" mkdir -p "$USER_HOME/Images"
 sudo -u "$SUDO_USER" mkdir -p "$USER_HOME/Videos"
 
-echo "Setting up AUR helpers ..."
-pacman -Syu --noconfirm
-pacman -S --noconfirm \
-    cargo \
-    go
-
-cd "$USER_HOME/Downloads"
-sudo -u "$SUDO_USER" git clone https://aur.archlinux.org/paru.git
-cd paru
-sudo -u "$SUDO_USER" makepkg -si
-echo "Paru has been installed ..."
-cd "$USER_HOME/Downloads"
-sudo -u "$SUDO_USER" git clone https://aur.archlinux.org/yay.git
-cd yay
-sudo -u "$SUDO_USER" makepkg -si
-echo "Yay has been installed ..."
-
 echo "Cloning bash theme ..."
-cd "$USER_HOME"
 sudo -u "$SUDO_USER" mkdir -p .bash/themes/agnoster-bash
 sudo -u "$SUDO_USER" git clone https://github.com/speedenator/agnoster-bash.git .bash/themes/agnoster-bash
 
 echo "Copying user configuration files ..."
 cd "$USER_HOME/Downloads/Arch"
 sudo -u "$SUDO_USER" cp -r .bashrc "$USER_HOME"
-sudo -u "$SUDO_USER" cp -r .nanorc "$USER_HOME"
 sudo -u "$SUDO_USER" cp -r fastfetch "$USER_HOME/.config"
 sudo -u "$SUDO_USER" cp -r kitty "$USER_HOME/.config"
 sudo -u "$SUDO_USER" cp -r kwalletrc "$USER_HOME/.config"
@@ -61,11 +42,11 @@ pacman -S --noconfirm \
     bat \
     bind \
     btop \
+    cargo \
     cosmic-session \
     cosmic-wallpapers \
     cmatrix \
     discord \
-    dconf \
     dnsmasq \
     dnssec-anchors \
     dosfstools \
@@ -77,15 +58,13 @@ pacman -S --noconfirm \
     eza \
     fastfetch \
     filelight \
-    flatpak-kcm \
-    gamescope \
+    go \
     gimp \
     grub-btrfs \
     gwenview \
     hdparm \
     htop \
     inotify-tools \
-    isoimagewriter \
     iwd \
     kate \
     kcalc \
@@ -94,12 +73,12 @@ pacman -S --noconfirm \
     kcolorpicker \
     kdeconnect \
     kdenlive \
-    kio-admin \
     kitty \
     kolourpaint \
     kstars \
     ksystemlog \
     kwrite \
+    kvantum \
     lib32-mesa \
     lib32-vulkan-radeon \
     lsscsi \
@@ -127,7 +106,7 @@ pacman -S --noconfirm \
     pipewire-alsa \
     pipewire-jack \
     pipewire-pulse \
-    plymouth-kcm \
+    plymouth \
     print-manager \
     pv \
     qalculate-qt \
@@ -156,12 +135,24 @@ pacman -S --noconfirm \
     xmlsec
 
 fastfetch -c examples/9
+sleep 4
+echo "Setting up AUR helpers ..."
+
+cd "$USER_HOME/Downloads"
+sudo -u "$SUDO_USER" git clone https://aur.archlinux.org/paru.git
+cd paru
+sudo -u "$SUDO_USER" makepkg -si
+echo "Paru has been installed ..."
+cd "$USER_HOME/Downloads"
+sudo -u "$SUDO_USER" git clone https://aur.archlinux.org/yay.git
+cd yay
+sudo -u "$SUDO_USER" makepkg -si
+echo "Yay has been installed ..."
 
 echo "Installing AUR packages ..."
 sleep 4
 sudo -u "$SUDO_USER" yay -Sua --noconfirm
 sudo -u "$SUDO_USER" yay -S --noconfirm \
-    bibata-cursor-theme-bin \
     bottles \
     brave-bin \
     flatseal \
@@ -195,7 +186,7 @@ sudo -u "$SUDO_USER" flatpak install flathub -y \
     org.openttd.OpenTTD
 
 echo "All flatpaks installed ..."
-echo "Enabling ly display manager ..."
+echo "Enabling display manager ..."
 systemctl enable cosmic-greeter.service
 echo "Setup complete!"
-fastfetch -l arch3
+fastfetch -c examples/10 -l arch3
